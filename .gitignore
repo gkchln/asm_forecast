@@ -12,6 +12,9 @@ data/
 # Models
 *.joblib
 
+# Mac
+.DS_Store
+
 # Distribution / packaging
 .Python
 build/
