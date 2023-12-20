@@ -8,6 +8,12 @@ __pycache__/
 
 # Data
 data/
+input_data/
+*.pkl
+*.pickle
+*.csv
+*.xlsx
+*.parquet
 
 # Models
 *.joblib
