@@ -15,6 +15,9 @@ input_data/
 *.xlsx
 *.parquet
 
+# Plots
+plots/
+
 # Models
 *.joblib
 
