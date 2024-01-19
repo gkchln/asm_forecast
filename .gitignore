@@ -24,6 +24,9 @@ plots/
 # Mac
 .DS_Store
 
+# R
+*.Rproj
+
 # Distribution / packaging
 .Python
 build/
@@ -145,3 +148,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.Rproj.user
