@@ -8,7 +8,7 @@ library(PRROC)
 library(progress)
 
 # Parameters ----------------------------------------------------------------------------------
-scope <- 'OFF'
+scope <- 'BID'
 input_path = sprintf('data/3_output/ML_dataset_%s.csv', scope)
 
 train_years <- c(2021)
@@ -86,7 +86,7 @@ predict_proba_monthly_recal <- function(df, start_month, end_month) {
     model <- glm(
       Result ~ SC_PC1 + SC_PC2 + IN_PC1 + IN_PC2 + CT_PC1 + 
         CT_PC2 + PurchMGP + SellMGP + SolarAngle + 
-        DeclAngle + PVold + PVnew + PriceDiff +
+        DeclAngle + PVnew + PriceDiff +
         WorkDay + hour + Tech + Prov,
       family = binomial,
       data = train_data,
