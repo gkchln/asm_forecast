@@ -15,8 +15,10 @@ input_data/
 *.xlsx
 *.parquet
 
-# Documents
+# Virtual environment
+asm_forecast/
 
+# Documents
 documents/
 
 # Plots
