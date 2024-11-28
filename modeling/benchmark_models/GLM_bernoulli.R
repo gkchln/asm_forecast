@@ -1,5 +1,8 @@
 ### Generalized Linear Model with Bernoulli response (Logistic Regression) ###
 
+# Packages installation -----------------------------------------------------------------------
+install.packages(c("car", "boot", "PRROC", "progress"))
+
 
 # Imports -------------------------------------------------------------------------------------
 library(car)
@@ -9,7 +12,7 @@ library(progress)
 
 # Parameters ----------------------------------------------------------------------------------
 scope <- 'BID'
-input_path = sprintf('data/3_output/ML_dataset_%s.csv', scope)
+input_path = sprintf('../../data/2_processed/ML_dataset_%s.csv', scope)
 
 train_years <- c(2021)
 test_years = c(2022)
@@ -35,7 +38,6 @@ other_features = c(
   'SellMGP',
   'SolarAngle',
   'DeclAngle',
-  'PVold',
   'PVnew',
   'PriceDiff'
 )
@@ -113,7 +115,7 @@ predict_proba_monthly_recal <- function(df, start_month, end_month) {
 
 # Read data ---------------------------------------------------------------
 
-df <- read.csv2(input_path, sep = ",")
+df <- read.csv2(input_path, sep = ",", )
 
 df[,other_features] <- lapply(df[,other_features], as.numeric)
 df[,features_to_encode] <- lapply(df[,features_to_encode], as.factor)
@@ -121,8 +123,8 @@ df$Result <- as.logical(df$Result)
 
 df[,other_features] <- scale(df[,other_features])
 
-train_df <- df[df$year %in% train_years,]
-test_df <- df[df$year %in% test_years,]
+#train_df <- df[df$year %in% train_years,]
+#test_df <- df[df$year %in% test_years,]
 
 # HOTFIX: remove 'Olio' category from test_df for 2021 since it is not in train
 #test_df <- test_df[test_df$MargTech != 'Olio',]
@@ -130,11 +132,11 @@ test_df <- df[df$year %in% test_years,]
 # Data exploration --------------------------------------------------------
 
 # Set up the grid layout
-par(mfrow = c(4, 4))  # Adjust the number of rows and columns as needed
-# Create boxplots for each variable grouped by "Result"
-for (feature in other_features) {
-  boxplot(train_df[,feature] ~ train_df$Result, main = feature, xlab = "Result", ylab = feature)
-}
+#par(mfrow = c(4, 4))  # Adjust the number of rows and columns as needed
+## Create boxplots for each variable grouped by "Result"
+#for (feature in other_features) {
+#  boxplot(train_df[,feature] ~ train_df$Result, main = feature, xlab = "Result", ylab = feature)
+#}
 
 
 
@@ -144,20 +146,20 @@ for (feature in other_features) {
 
 ## Logistic Regression ----------------------------------------------------
 ### Model with all regressors -----------------------------------------------
-logreg <- glm(
-  Result ~ SC_PC1 + SC_PC2 + IN_PC1 + IN_PC2 + CT_PC1 + 
-           CT_PC2 + PurchMGP + SellMGP + SolarAngle + 
-           DeclAngle + PVold + PVnew + PriceDiff +
-           WorkDay + hour + Tech + Prov + MargTech,
-           # I removed MargTech because it can happen that one level is not present in the train
-           # but in the test
-  family = binomial,
-  data = train_df,
-)
-
-summary(logreg)
-pr <- APS(logreg, test_df)
-plot(pr)
+#logreg <- glm(
+#  Result ~ SC_PC1 + SC_PC2 + IN_PC1 + IN_PC2 + CT_PC1 + 
+#           CT_PC2 + PurchMGP + SellMGP + SolarAngle + 
+#           DeclAngle + PVnew + PriceDiff +
+#           WorkDay + hour + Tech + Prov + MargTech,
+#           # I removed MargTech because it can happen that one level is not present in the train
+#           # but in the test
+#  family = binomial,
+#  data = train_df,
+#)
+#
+#summary(logreg)
+#pr <- APS(logreg, test_df)
+#plot(pr)
 
 
 # Monthly Recalibration -----------------------------------------------------------------------
@@ -173,7 +175,7 @@ cat("Total elapsed time:", timer["elapsed"], "seconds\n")
 
 write.csv(
   probs_df,
-  file = sprintf('modeling/%s/model_predictions/GLM_predicted_probs_monthly_recal_rolling_12m.csv', scope),
+  file = sprintf('../%s/model_predictions/GLM_predicted_probs_monthly_recal_rolling_12m.csv', scope),
   row.names = TRUE
 )
 

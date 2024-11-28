@@ -33,7 +33,7 @@ def calibrate_proba_monthly_recal(df, start_month, end_month, save_folder=None):
         if save_folder:
             if not exists(save_folder):
                 makedirs(save_folder)
-            save_path = join(save_folder, f'calibrator_{test_month}.joblib')
+            save_path = join(save_folder, f'{test_month}.joblib')
             joblib.dump(ir, save_path)
         y_probs_cal = ir.predict(x_test)
         # print("Test month is: ", test_month)

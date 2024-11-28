@@ -1,4 +1,5 @@
 import pandas as pd
+from PIL import Image
 
 hour_loss_days = [
     20170326,
@@ -78,3 +79,34 @@ def get_timestamp_from_gme_system(input_df, date_col='Data', hour_col='Ora', add
         timestamp = timestamp.tz_convert('Europe/Rome', ambiguous='infer')
     
     return timestamp
+
+def vertically_concatenate_images(image_paths, output_path):
+    """
+    Vertically concatenates a list of images and saves the result.
+
+    Parameters:
+        image_paths (list of str): List of file paths to the images to be concatenated.
+        output_path (str): File path to save the concatenated image.
+
+    Returns:
+        None
+    """
+    # Open images
+    images = [Image.open(img) for img in image_paths]
+
+    # Calculate total height and max width
+    total_height = sum(img.height for img in images)
+    max_width = max(img.width for img in images)
+
+    # Create a blank image with the total height and max width
+    combined_image = Image.new("RGBA", (max_width, total_height))
+
+    # Paste each image below the previous one
+    current_height = 0
+    for img in images:
+        combined_image.paste(img, (0, current_height))
+        current_height += img.height
+
+    # Save the result
+    combined_image.save(output_path)
+
