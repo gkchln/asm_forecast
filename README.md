@@ -10,7 +10,7 @@ This file contains the instructions to reproduce the analysis and results of the
 ### Create Python virtual environment
 Run the following command in your terminal:
 ```{bash}
-python -m venv asm_forecast
+python3 -m venv asm_forecast
 ```
 This creates a virtual environment named `asm_forecast` in the current directory.
 
