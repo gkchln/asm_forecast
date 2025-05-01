@@ -126,7 +126,7 @@ _Outputs_:
 
 ### Explain model
 
-Run notebook `modeling/ModelPerformanceAnalysis.ipynb` (execution time <5m) for each `scope`
+Run notebook `modeling/ModelExplainer.ipynb` (execution time <5m) for each `scope`
 
 _Inputs_:
 - Bids dataset `data/2_processed/ML_dataset_{scope}.pkl`
