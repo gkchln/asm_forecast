@@ -2,7 +2,9 @@
 
 _Probabilistic Forecast of the Ancillary Services Market's Results in a Central Dispatching Model_
 
-![Graphical abstract](grabs.png)
+<p align="center">
+  <img src="grabs.png" alt="Graphical abstract" width="500">
+</p>
 
 This file contains the instructions to reproduce the analysis and results of the related paper. It is assumed that users have Python 3.11 and R 4.3 or higher installed on their system. The pipeline is composed of notebooks (except one R script) that must be executed in a specific order, and sometimes several times with different parameter values. The execution times are indicative and correspond to a MacBook Pro with an Apple M2 Pro chip and 16GB of RAM. Reproducing the whole analysis corresponds to a global running time around 10h. I/O operations assume an SSD on which at least 55GB of space is available.
 
@@ -105,8 +107,8 @@ _Inputs_:
 - HP predidctions with monthly recalibration `modeling/{scope}/model_predictions/HP_predicted_probs_monthly_recal_rolling_12m.pkl`
 
 _Outputs_:
-- **Figure 2** `plots/{scope}/models_comparison/RFrecal_GLMrecal_HPrecal_aps_year_{scope}.png`
-- **Figure 3** `plots/{scope}/models_comparison/RF2018_RF2019_RF2020_RF2021_RFrecal_aps_year_{scope}.png`
+- **Figure 3** `plots/{scope}/models_comparison/RFrecal_GLMrecal_HPrecal_aps_year_{scope}.png`
+- **Figure 4** `plots/{scope}/models_comparison/RF2018_RF2019_RF2020_RF2021_RFrecal_aps_year_{scope}.png`
 
 ## Post-process model predictions
 
@@ -121,8 +123,8 @@ _Inputs_:
 _Outputs_:
 - RF _calibrated_ probabily predictions `modeling/{scope}/model_predictions/RF_predicted_probs_monthly_recal_rolling_12m_CALIBRATED.pkl`
 - Fitted isotonic regression models for each month `{scope}/model_dumps/calibrator/YYYYMM.joblib`
-- **Figure 4** `plots/{scope}/rd_{scope}.png`
-- **Figure 5** `plots/{scope}/precision_recall/prf1_{scope}.png`
+- **Figure 5** `plots/{scope}/rd_{scope}.png`
+- **Figure 6** `plots/{scope}/precision_recall/prf1_{scope}.png`
 
 ### Explain model
 
@@ -133,9 +135,13 @@ _Inputs_:
 - RF model trained on 2021 `modeling/{scope}/model_dumps/model_trained_{scope}_2021.joblib`
 
 _Outputs_:
-- **Figure 6** `plots/{scope}/explainer/pdp_cat_{scope}_test.png`
-- **Figure 7** `plots/{scope}/explainer/pdp_price_pv_{scope}_test.png`
-- **Figure B.10** `plots/{scope}/explainer/pfi_{scope}_test.png`
+- **Figure 7** `plots/{scope}/explainer/shap_{scope}_feature_imp_static.png`
+- **Figure 8** `plots/{scope}/explainer/shap_{scope}_feature_imp.png`
+- **Figure 9** `plots/{scope}/explainer/pfi_{scope}_test.png`
+- **Figure 10** `plots/{scope}/explainer/shap_{scope}_dependence_PriceDiff.png`
+- **Figure 11** `plots/{scope}/explainer/shap_{scope}_dependence_BP.png`
+- **Figure 12** `plots/{scope}/explainer/shap_{scope}_dependence_Qty.png`
+- **Figure 13** `plots/{scope}/explainer/shap_{scope}_dependence_Prov.png`
 
 ## Bid pricing use case and market simulation
 
