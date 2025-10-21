@@ -6,7 +6,7 @@ _Strategic bidding in pay-as-bid power reserve markets: A machine learning appro
   <img src="grabs.png" alt="Graphical abstract" width="500">
 </p>
 
-This file contains the instructions to reproduce the analysis and results of the related [paper]([URL](https://doi.org/10.1016/j.eneco.2025.108780)). It is assumed that users have Python 3.11 and R 4.3 or higher installed on their system. The pipeline is composed of notebooks (except one R script) that must be executed in a specific order, and sometimes several times with different parameter values. The execution times are indicative and correspond to a MacBook Pro with an Apple M2 Pro chip and 16GB of RAM. Reproducing the whole analysis corresponds to a global running time around 10h. I/O operations assume an SSD on which at least 55GB of space is available.
+This file contains the instructions to reproduce the analysis and results of the related [paper](https://doi.org/10.1016/j.eneco.2025.108780). It is assumed that users have Python 3.11 and R 4.3 or higher installed on their system. The pipeline is composed of notebooks (except one R script) that must be executed in a specific order, and sometimes several times with different parameter values. The execution times are indicative and correspond to a MacBook Pro with an Apple M2 Pro chip and 16GB of RAM. Reproducing the whole analysis corresponds to a global running time around 10h. I/O operations assume an SSD on which at least 55GB of space is available.
 
 ## Set-up
 ### Create Python virtual environment
